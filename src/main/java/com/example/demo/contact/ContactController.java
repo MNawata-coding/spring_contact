@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -48,6 +50,11 @@ public class ContactController {
     @DeleteMapping("/delete/{id}")
     public void delte(@PathVariable("id") Integer id) {
         service.delte(id);
+    }
+
+    @PutMapping("edit/{id}")
+    public void putMethodName(@PathVariable String id, @RequestBody Contact contact) {
+        service.save(contact);
     }
     
 }

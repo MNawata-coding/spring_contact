@@ -32,6 +32,10 @@ public class ControllerService {
         return repository.findAll();
     }
 
+    /**
+     * 削除処理
+     * @param id
+     */
     public void delte(Integer id){
         repository.deleteById(id);
     }
