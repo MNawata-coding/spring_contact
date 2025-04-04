@@ -1,6 +1,7 @@
 package com.example.demo.contact;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -52,9 +53,11 @@ public class ContactController {
         service.delte(id);
     }
 
-    @PutMapping("edit/{id}")
-    public void putMethodName(@PathVariable String id, @RequestBody Contact contact) {
-        service.save(contact);
+    //update処理
+    @PutMapping("update/{id}")
+    public void putMethodName(@PathVariable("id") Integer id, @RequestBody Contact contact) {
+        //idで検索
+        service.update(id, contact);
     }
     
 }
