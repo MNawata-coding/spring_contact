@@ -1,7 +1,6 @@
 package com.example.demo.contact;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,8 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PutMapping;
 
 
@@ -24,14 +24,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class ContactController {
 
     @Autowired
-    ControllerService service;
+    ContactService service;
 
     /**
      * 送信後の保存処理
      * @return
      */
     @PostMapping("save")
-    public void save(@RequestBody Contact contact) {
+    public void save(@Valid @RequestBody ContactDto contact) {
         service.save(contact);
     }
 
@@ -55,7 +55,7 @@ public class ContactController {
 
     //update処理
     @PutMapping("update/{id}")
-    public void putMethodName(@PathVariable("id") Integer id, @RequestBody Contact contact) {
+    public void putMethodName(@PathVariable("id") Integer id, @Valid @RequestBody Contact contact) {
         //idで検索
         service.update(id, contact);
     }

@@ -7,21 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ControllerService {
+public class ContactService {
 
     @Autowired
     ContactRepository repository;
+
 
     /***
      * 保存処理を行うサービスクラス
      * @param contact
      * @return
      */
-    public String save(Contact contact){
+    public void save(ContactDto contact){
+        //Entityへ詰め替え
+        Contact contactEntity = new Contact();
+        contactEntity.setName(contact.getName());
+        contactEntity.setEmail(contact.getEmail());
+        contactEntity.setContent(contact.getContent());
 
         //データを保存する
-        repository.save(contact);
-        return "";
+        repository.save(contactEntity);
     }
     
     /***
@@ -48,16 +53,16 @@ public class ControllerService {
      */
     public void update(Integer id, Contact contact){
         //idで検索する
-        Optional<Contact> opEntity = repository.findById(id);
+        Optional<Contact> updEntity = repository.findById(id);
         //存在した場合
-        if(opEntity.isPresent()){
+        if(updEntity.isPresent()){
             //各値を設定する
-            Contact test = opEntity.get();
-            test.setName(contact.name);
-            test.setEmail(contact.email);
-            test.setContent(contact.content);
+            Contact updContact = updEntity.get();
+            updContact.setName(contact.name);
+            updContact.setEmail(contact.email);
+            updContact.setContent(contact.content);
             //保存処理
-            repository.save(test);
+            repository.save(updContact);
         } else {
             //存在しない場合
             System.out.println("更新error");

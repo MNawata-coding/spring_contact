@@ -1,23 +1,12 @@
 package com.example.demo.contact;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-//Entityはテーブルと対応付けるクラス
-@Entity
 @Data
-public class Contact {
-    //@Dataでデフォルトコンストラクタとgetter,setterを自動生成
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+public class ContactDto{
 
     @NotBlank(message = "名前は必須項目です")
     @Size(min=1, max=30)
@@ -30,4 +19,5 @@ public class Contact {
     @NotBlank(message = "内容を入力してください")
     @Size(min=1, max=100)
     String content;
+
 }

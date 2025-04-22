@@ -6,7 +6,7 @@
 ---
 
 ## 🌐 デモ（※準備中）
-今後、AWS（ECS or Render or Vercel）にて本番デプロイ予定です。
+https://react-portfolio-suica1229.s3.ap-northeast-1.amazonaws.com/index.html
 
 ---
 
@@ -41,19 +41,24 @@
 ---
 
 ## スクリーンショット
-![List](./screenshots/一覧画面.png)
-![List](./screenshots/編集画面.png)
+![List](./screenshots/list-screen.png)
+![List](./screenshots/edit-screen.png)
 
 ### システム構成図(Mermaid)
 ```mermaid
 graph TD
-  A[React Frontend] -->|axios/fetch| B[Spring Boot API]
-  B --> C[(MySQL Database)]
+  A[React Frontend] --> |axios/fetch|  B[API Gateway]
+  B --> C[Spring Boot API]
+  C --> D[(MySQL Database)]
 ```
 
 ## 🚀 セットアップ手順（ローカル）
+CLI
+./gradlew bootrun
+
+IDE
 DemoApplication.java
-を右クリックして実行
+を右クリックして[RUN JAVA]選択
 
 application.propertiesの設定
 spring.datasource.url=jdbc:mysql://localhost:3306/contact_db
