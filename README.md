@@ -47,7 +47,7 @@ https://react-portfolio-suica1229.s3.ap-northeast-1.amazonaws.com/index.html
 ### システム構成図(Mermaid)
 ```mermaid
 graph TD
-  A[React Frontend] --> |axios/fetch|  B[API Gateway]
+  A[React Frontend] --> |axios/fetch| B[API Gateway]
   B --> C[Spring Boot API]
   C --> D[(MySQL Database)]
 ```
