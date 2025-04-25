@@ -1,5 +1,6 @@
 package com.example.demo.contact;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,9 +34,20 @@ public class ContactService {
      * 全件取得処理
      * @return
      */
-    public List<Contact> get(){
+    public List<ContactDto> get(){
         //Contactリストを返却する
-        return repository.findAll();
+        List<Contact> contactList = repository.findAll();
+        List<ContactDto> dtoList = new ArrayList<>();
+        //Entityからdtoへ詰め替え
+        for (Contact contact : contactList) {
+            ContactDto dto = new ContactDto();
+            dto.setId(contact.getId());
+            dto.setName(contact.getName());
+            dto.setEmail(contact.getEmail());
+            dto.setContent(contact.getContent());
+            dtoList.add(dto);
+        }
+        return dtoList;
     }
 
     /**
@@ -51,7 +63,7 @@ public class ContactService {
      * @param id
      * @param contact
      */
-    public void update(Integer id, Contact contact){
+    public void update(Integer id, ContactDto contact){
         //idで検索する
         Optional<Contact> updEntity = repository.findById(id);
         //存在した場合

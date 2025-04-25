@@ -8,11 +8,12 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 //Entityはテーブルと対応付けるクラス
 @Entity
-@Data
+@Getter
 public class Contact {
     //@Dataでデフォルトコンストラクタとgetter,setterを自動生成
     @Id
@@ -21,13 +22,16 @@ public class Contact {
 
     @NotBlank(message = "名前は必須項目です")
     @Size(min=1, max=30)
+    @Setter
     String name;
 
     @NotBlank(message = "メールアドレスを入力してください")
     @Email
+    @Setter
     String email;
     
     @NotBlank(message = "内容を入力してください")
     @Size(min=1, max=100)
+    @Setter
     String content;
 }

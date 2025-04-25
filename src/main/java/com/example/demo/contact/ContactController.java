@@ -40,7 +40,7 @@ public class ContactController {
      * @return
      */
     @GetMapping("get")
-    public List<Contact> get(){
+    public List<ContactDto> get(){
         return service.get();
     }
 
@@ -55,9 +55,8 @@ public class ContactController {
 
     //update処理
     @PutMapping("update/{id}")
-    public void putMethodName(@PathVariable("id") Integer id, @Valid @RequestBody Contact contact) {
+    public void putMethodName(@PathVariable("id") Integer id, @Valid @RequestBody ContactDto contact) {
         //idで検索
         service.update(id, contact);
     }
-    
 }
